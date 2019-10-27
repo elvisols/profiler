@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(indexName = "user", type = "clicks")
+@Document(indexName = "user-clicks", type = "click")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Click {
 
@@ -30,7 +30,7 @@ public class Click {
 
     @NotNull(message = "hotel region cannot be null")
     @NotBlank(message = "hotel region cannot be empty")
-    private int hotelRegion;
+    private String hotelRegion;
 
     @NotNull(message = "timestamp cannot be null")
     @NotBlank(message = "timestamp cannot be empty")

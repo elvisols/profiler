@@ -96,27 +96,27 @@ services:
         condition: service_healthy
     healthcheck:
       test: exit 0
-  # profiler:
-  #   image: "elvisols/profiler"
-  #   restart: always
-  #   networks:
-  #     - profiler-tier
-  #   ports:
-  #     - "8999:8999"
-  #     environment:
-  #       - KAFKA_SERVER=kafka
-  #       - KSQL_REST_API_ENDPOINT_KSQL=http://ksql:8088/ksql
-  #       - KSQL_REST_API_ENDPOINT_QUERY=http://ksql:8088/query
-  #       - KSQL_REST_API_ENDPOINT_INFO=http://ksql:8088/info
-  #       - KSQL_REST_API_ENDPOINT_STATUS=http://ksql:8088/status
-  #       - ELASTICSEARCH_HOST=elasticsearch
-  #       - SPRING_DATA_ELASTICSEARCH_CLUSTER-NODES=elasticsearch:9300
-  #   volumes:
-  #     - "./inputsource:/inputsource"
-  #   depends_on:
-  #     elasticsearch:
-  #       condition: service_healthy
-  #     kafka:
-  #       condition: service_healthy
-  #   healthcheck:
-  #     test: exit 0
+  profiler:
+    image: "elvisols/profiler"
+    restart: always
+    networks:
+      - profiler-tier
+    ports:
+      - "8999:8999"
+    environment:
+      - KAFKA_SERVER=kafka
+      #       - KSQL_REST_API_ENDPOINT_KSQL=http://ksql:8088/ksql
+      #       - KSQL_REST_API_ENDPOINT_QUERY=http://ksql:8088/query
+      #       - KSQL_REST_API_ENDPOINT_INFO=http://ksql:8088/info
+      #       - KSQL_REST_API_ENDPOINT_STATUS=http://ksql:8088/status
+      - ELASTICSEARCH_HOST=elasticsearch
+      - SPRING_DATA_ELASTICSEARCH_CLUSTER-NODES=elasticsearch:9300
+    volumes:
+      - "./inputsource:/inputsource"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: exit 0

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(indexName = "uzer", type = "selections")
+@Document(indexName = "user-selections", type = "selection")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Selection {
 
