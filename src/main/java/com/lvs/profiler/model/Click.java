@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(indexName = "user-clicks", type = "click")
+@Document(indexName = "user-clicks", type = "click", shards = 1)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Click {
 
