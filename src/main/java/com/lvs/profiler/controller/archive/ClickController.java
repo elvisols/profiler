@@ -4,7 +4,6 @@ import com.lvs.profiler.model.Click;
 import com.lvs.profiler.service.ClickService;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.search.SearchResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
@@ -33,7 +32,7 @@ public class ClickController {
     }
 
     /**
-     * This method fetches all click
+     * This method fetches all click by user hotel
      *
      * @param top Top clicked hotel
      * @param user_id user id
@@ -48,7 +47,7 @@ public class ClickController {
     }
 
     /**
-     * This method fetches all click
+     * This method fetches all click by user hotel region
      *
      * @param top  top clicked hotel region
      * @param user_id

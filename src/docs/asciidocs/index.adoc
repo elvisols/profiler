@@ -1,0 +1,22 @@
+
+= Profiler REST Service API Guide
+Lvs Solutions <elvisouk@yahoo.com>
+v1.0.0, 28/10/2019
+:toc: right
+:toc-title: API Content
+:sectnums:
+:icons: font
+:doctype: book
+:source-highlighter: pygments
+
+[NOTE]
+Webservice running at http://localhost:8999
+
+== Introduction
+Realtime 'Clicks' and 'Selections' documentation to know about a user in real time to add some personalization to their products
+
+include::selections.adoc[]
+
+include::clicks.adoc[]
+
+include::footer.adoc[]

@@ -12,7 +12,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 public class JacksonConfig   {
 
     @Bean
-    public Jackson2ObjectMapperBuilderCustomizer changeDocCountError() {
+    public Jackson2ObjectMapperBuilderCustomizer ignoreErrorField() {
         return new Jackson2ObjectMapperBuilderCustomizer() {
 
             @Override

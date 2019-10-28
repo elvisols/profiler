@@ -1,0 +1,14 @@
+== Selections API
+The following section contain details how to query and retrieve the top-N amenities selected by a particular user.
+
+=== Get all Selection Per User
+Get all selected amenities
+
+
+==== Sample Request structure
+include::{snippets}/selection-controller-tests/get-selections-by-user-test/path-parameters.adoc[]
++
+include::{snippets}/selection-controller-tests/get-selections-by-user-test/request-parameters.adoc[]
+[source,python]
+include::{snippets}/selection-controller-tests/get-selections-by-user-test/http-request.adoc[]
+

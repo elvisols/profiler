@@ -1,0 +1,23 @@
+== Clicks API
+Top hotels clicked by a user
+
+=== Get all Clicks Per User Hotel
+Get all the clicked hotels per user
+
+==== Sample Request structure
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/path-parameters.adoc[]
++
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/request-parameters.adoc[]
+[source,python]
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/http-request.adoc[]
+
+
+=== Get all Clicks Per User Hotel Region
+Get all the clicked hotel regions per user
+
+==== Sample Request structure
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/path-parameters.adoc[]
++
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/request-parameters.adoc[]
+[source,python]
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/http-request.adoc[]
