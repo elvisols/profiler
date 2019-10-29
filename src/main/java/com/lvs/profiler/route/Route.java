@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lvs.profiler.model.Click;
 import com.lvs.profiler.model.Selection;
+import com.lvs.profiler.util.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -28,7 +29,6 @@ public class Route extends RouteBuilder {
 
     private static final char DEFAULT_SEPARATOR = ',';
     private static final char DEFAULT_QUOTE = '"';
-    ObjectMapper mapper = new ObjectMapper();
     @Value("${file.input.source}")
     private String filePath;
 
@@ -153,7 +153,7 @@ public class Route extends RouteBuilder {
                 selection.setUserId(Integer.valueOf(line.get(1)));
                 selection.setAmenityId(Integer.valueOf(line.get(2)));
 
-                exchange.getIn().setBody(mapper.writeValueAsString(selection));
+                exchange.getIn().setBody(Singleton.getObjectMapper().writeValueAsString(selection));
 
             }
         });
@@ -170,7 +170,7 @@ public class Route extends RouteBuilder {
                 click.setHotelId(Integer.valueOf(line.get(2)));
                 click.setHotelRegion(line.get(3));
 
-                exchange.getIn().setBody(mapper.writeValueAsString(click));
+                exchange.getIn().setBody(Singleton.getObjectMapper().writeValueAsString(click));
 
             }
         });
@@ -213,7 +213,7 @@ public class Route extends RouteBuilder {
 
                             Map<String, Object> map = new HashMap<String, Object>();
 
-                            map = mapper.readValue(json, new TypeReference<Map<String, Object>>(){});
+                            map = Singleton.getObjectMapper().readValue(json, new TypeReference<Map<String, Object>>(){});
 
                             exchange.getIn().setHeader(ElasticsearchConstants.PARAM_INDEX_NAME, "user-clicks");
                             exchange.getIn().setHeader(ElasticsearchConstants.PARAM_INDEX_TYPE, "click");
@@ -242,7 +242,7 @@ public class Route extends RouteBuilder {
 
                             Map<String, Object> map = new HashMap<String, Object>();
 
-                            map = mapper.readValue(json, new TypeReference<Map<String, Object>>(){});
+                            map = Singleton.getObjectMapper().readValue(json, new TypeReference<Map<String, Object>>(){});
 
                             exchange.getIn().setHeader(ElasticsearchConstants.PARAM_INDEX_NAME, "user-selections");
                             exchange.getIn().setHeader(ElasticsearchConstants.PARAM_INDEX_TYPE, "selection");

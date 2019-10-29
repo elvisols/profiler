@@ -1,5 +1,7 @@
 package com.lvs.profiler.controller.archive;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.lvs.profiler.controller.Response;
 import com.lvs.profiler.model.Selection;
 import com.lvs.profiler.service.SelectionService;
 import lombok.RequiredArgsConstructor;
@@ -40,9 +42,11 @@ public class SelectionController {
      * @return result as list of paginated selectionObject
      */
     @GetMapping(value="selection/{user_id}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public SearchResponse findSelectionsByUser(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) {
+    public Response findSelectionsByUser(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
 
-        return selectionService.findByUserAmenity(user_id, top);
+        SearchResponse searchResponse = selectionService.findByUserAmenity(user_id, top);
+
+        return Response.wrapper(searchResponse);
 
     }
 

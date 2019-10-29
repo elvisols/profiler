@@ -1,13 +1,24 @@
 package com.lvs.profiler.controller.archive;
 
+import alexh.weak.Dynamic;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lvs.profiler.controller.Response;
 import com.lvs.profiler.model.Click;
 import com.lvs.profiler.service.ClickService;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("archive")
@@ -40,24 +51,28 @@ public class ClickController {
      * @return result as list of paginated clickObject
      */
     @GetMapping(value="click/{user_id}/hotel", produces= MediaType.APPLICATION_JSON_VALUE)
-    public SearchResponse findByUserHotel(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) {
+    public Response findByUserHotel(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
 
-        return clickService.findByUserHotel(user_id, top);
+        SearchResponse searchResponse = clickService.findByUserHotel(user_id, top);
+
+        return Response.wrapper(searchResponse);
 
     }
 
     /**
      * This method fetches all click by user hotel region
      *
-     * @param top  top clicked hotel region
      * @param user_id
+     * @param top  top clicked hotel region
      * @method GET
      * @return result as list of paginated clickObject
      */
     @GetMapping(value="click/{user_id}/hotel-region", produces= MediaType.APPLICATION_JSON_VALUE)
-    public SearchResponse findByUserHotelRegion(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) {
+    public Response findByUserHotelRegion(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
 
-        return clickService.findByUserHotelRegion(user_id, top);
+        SearchResponse searchResponse = clickService.findByUserHotelRegion(user_id, top);
+
+        return Response.wrapper(searchResponse);
 
     }
 

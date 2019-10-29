@@ -99,6 +99,14 @@
             <version>${camel.version}</version>
         </dependency>
 
+        <!-- Miscellaneous -->
+        <dependency>
+            <groupId>com.github.alexheretic</groupId>
+            <artifactId>dynamics</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+
         <!-- dev tools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
