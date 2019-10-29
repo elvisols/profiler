@@ -19,6 +19,8 @@ public class SelectionController {
 
     private final SelectionService selectionService;
 
+    private final Response response;
+
     /**
      * This method fetches all selection
      *
@@ -46,7 +48,7 @@ public class SelectionController {
 
         SearchResponse searchResponse = selectionService.findByUserAmenity(user_id, top);
 
-        return Response.wrapper(searchResponse);
+        return response.fetch(searchResponse);
 
     }
 

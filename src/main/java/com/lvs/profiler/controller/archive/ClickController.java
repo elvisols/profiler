@@ -28,6 +28,8 @@ public class ClickController {
 
     private final ClickService clickService;
 
+    private final Response response;
+
     /**
      * This method fetches all click
      *
@@ -55,7 +57,7 @@ public class ClickController {
 
         SearchResponse searchResponse = clickService.findByUserHotel(user_id, top);
 
-        return Response.wrapper(searchResponse);
+        return response.fetch(searchResponse);
 
     }
 
@@ -72,7 +74,7 @@ public class ClickController {
 
         SearchResponse searchResponse = clickService.findByUserHotelRegion(user_id, top);
 
-        return Response.wrapper(searchResponse);
+        return response.fetch(searchResponse);
 
     }
 

@@ -11,6 +11,11 @@ include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/request
 [source,python]
 include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/http-request.adoc[]
 
+==== Sample Response structure
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/response-fields.adoc[]
+[source,json]
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-test/response-body.adoc[]
+
 
 === Get all Clicks Per User Hotel Region
 Get all the clicked hotel regions per user
@@ -21,3 +26,8 @@ include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/
 include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/request-parameters.adoc[]
 [source,python]
 include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/http-request.adoc[]
+
+==== Sample Response structure
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/response-fields.adoc[]
+[source,json]
+include::{snippets}/click-controller-tests/get-clicks-by-user-hotel-region-test/response-body.adoc[]

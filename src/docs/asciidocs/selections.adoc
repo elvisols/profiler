@@ -12,3 +12,7 @@ include::{snippets}/selection-controller-tests/get-selections-by-user-test/reque
 [source,python]
 include::{snippets}/selection-controller-tests/get-selections-by-user-test/http-request.adoc[]
 
+==== Sample Response structure
+include::{snippets}/selection-controller-tests/get-selections-by-user-test/response-fields.adoc[]
+[source,json]
+include::{snippets}/selection-controller-tests/get-selections-by-user-test/response-body.adoc[]
