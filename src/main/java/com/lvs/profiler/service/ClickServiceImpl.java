@@ -34,7 +34,7 @@ public class ClickServiceImpl implements ClickService {
     Client client;
 
     @Override
-    public SearchResponse findByUserHotel(int uId, int topCount) {
+    public SearchResponse findByUserHotel(Long uId, int topCount) {
         return client.prepareSearch("user-clicks")
                 .setTypes("click")
                 .addAggregation(
@@ -51,7 +51,7 @@ public class ClickServiceImpl implements ClickService {
     }
 
     @Override
-    public SearchResponse findByUserHotelRegion(int uId, int topCount) {
+    public SearchResponse findByUserHotelRegion(Long uId, int topCount) {
         return client.prepareSearch("user-clicks")
                 .setTypes("click")
                 .addAggregation(

@@ -22,7 +22,7 @@ public class SelectionServiceImpl implements SelectionService {
     Client client;
 
     @Override
-    public SearchResponse findByUserAmenity(int uId, int topCount) {
+    public SearchResponse findByUserAmenity(Long uId, int topCount) {
         return client.prepareSearch("user-selections")
                 .setTypes("selection")
                 .addAggregation(

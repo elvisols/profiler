@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lvs.profiler.model.Click;
 import com.lvs.profiler.model.Selection;
 import com.lvs.profiler.util.Singleton;
@@ -32,99 +31,6 @@ public class Route extends RouteBuilder {
     @Value("${file.input.source}")
     private String filePath;
 
-    // helper methods
-    public static List<String> parseLine(String cvsLine) {
-        return parseLine(cvsLine, DEFAULT_SEPARATOR, DEFAULT_QUOTE);
-    }
-
-    public static List<String> parseLine(String cvsLine, char separators) {
-        return parseLine(cvsLine, separators, DEFAULT_QUOTE);
-    }
-
-    public static List<String> parseLine(String cvsLine, char separators, char customQuote) {
-
-        List<String> result = new ArrayList<>();
-
-        //if empty, return!
-        if (cvsLine == null && cvsLine.isEmpty()) {
-            return result;
-        }
-
-        if (customQuote == ' ') {
-            customQuote = DEFAULT_QUOTE;
-        }
-
-        if (separators == ' ') {
-            separators = DEFAULT_SEPARATOR;
-        }
-
-        StringBuffer curVal = new StringBuffer();
-        boolean inQuotes = false;
-        boolean startCollectChar = false;
-        boolean doubleQuotesInColumn = false;
-
-        char[] chars = cvsLine.toCharArray();
-
-        for (char ch : chars) {
-
-            if (inQuotes) {
-                startCollectChar = true;
-                if (ch == customQuote) {
-                    inQuotes = false;
-                    doubleQuotesInColumn = false;
-                } else {
-
-                    //Fixed : allow "" in custom quote enclosed
-                    if (ch == '\"') {
-                        if (!doubleQuotesInColumn) {
-                            curVal.append(ch);
-                            doubleQuotesInColumn = true;
-                        }
-                    } else {
-                        curVal.append(ch);
-                    }
-
-                }
-            } else {
-                if (ch == customQuote) {
-
-                    inQuotes = true;
-
-                    //Fixed : allow "" in empty quote enclosed
-                    if (chars[0] != '"' && customQuote == '\"') {
-                        curVal.append('"');
-                    }
-
-                    //double quotes in column will hit this!
-                    if (startCollectChar) {
-                        curVal.append('"');
-                    }
-
-                } else if (ch == separators) {
-
-                    result.add(curVal.toString());
-
-                    curVal = new StringBuffer();
-                    startCollectChar = false;
-
-                } else if (ch == '\r') {
-                    //ignore LF characters
-                    continue;
-                } else if (ch == '\n') {
-                    //the end, break!
-                    break;
-                } else {
-                    curVal.append(ch);
-                }
-            }
-
-        }
-
-        result.add(curVal.toString());
-
-        return result;
-    }
-
     @Override
     public void configure() throws Exception {
         /**
@@ -150,8 +56,8 @@ public class Route extends RouteBuilder {
                 Selection selection = new Selection(); // Use FlyWeight design pattern here to get related object
 
                 selection.setTimestamp(Integer.valueOf(line.get(0)));
-                selection.setUserId(Integer.valueOf(line.get(1)));
-                selection.setAmenityId(Integer.valueOf(line.get(2)));
+                selection.setUserId(Long.valueOf(line.get(1)));
+                selection.setAmenityId(Long.valueOf(line.get(2)));
 
                 exchange.getIn().setBody(Singleton.getObjectMapper().writeValueAsString(selection));
 
@@ -166,8 +72,8 @@ public class Route extends RouteBuilder {
                 Click click = new Click(); // Use FlyWeight design pattern here to get related object
 
                 click.setTimestamp(Integer.valueOf(line.get(0)));
-                click.setUserId(Integer.valueOf(line.get(1)));
-                click.setHotelId(Integer.valueOf(line.get(2)));
+                click.setUserId(Long.valueOf(line.get(1)));
+                click.setHotelId(Long.valueOf(line.get(2)));
                 click.setHotelRegion(line.get(3));
 
                 exchange.getIn().setBody(Singleton.getObjectMapper().writeValueAsString(click));
@@ -262,5 +168,99 @@ public class Route extends RouteBuilder {
                 .to("elasticsearch-rest://{{elasticsearch.clustername}}");
 
     }
+
+    // helper methods
+    public static List<String> parseLine(String cvsLine) {
+        return parseLine(cvsLine, DEFAULT_SEPARATOR, DEFAULT_QUOTE);
+    }
+
+    public static List<String> parseLine(String cvsLine, char separators) {
+        return parseLine(cvsLine, separators, DEFAULT_QUOTE);
+    }
+
+    public static List<String> parseLine(String cvsLine, char separators, char customQuote) {
+
+        List<String> result = new ArrayList<>();
+
+        //if empty, return!
+        if (cvsLine == null && cvsLine.isEmpty()) {
+            return result;
+        }
+
+        if (customQuote == ' ') {
+            customQuote = DEFAULT_QUOTE;
+        }
+
+        if (separators == ' ') {
+            separators = DEFAULT_SEPARATOR;
+        }
+
+        StringBuffer curVal = new StringBuffer();
+        boolean inQuotes = false;
+        boolean startCollectChar = false;
+        boolean doubleQuotesInColumn = false;
+
+        char[] chars = cvsLine.toCharArray();
+
+        for (char ch : chars) {
+
+            if (inQuotes) {
+                startCollectChar = true;
+                if (ch == customQuote) {
+                    inQuotes = false;
+                    doubleQuotesInColumn = false;
+                } else {
+
+                    //Fixed : allow "" in custom quote enclosed
+                    if (ch == '\"') {
+                        if (!doubleQuotesInColumn) {
+                            curVal.append(ch);
+                            doubleQuotesInColumn = true;
+                        }
+                    } else {
+                        curVal.append(ch);
+                    }
+
+                }
+            } else {
+                if (ch == customQuote) {
+
+                    inQuotes = true;
+
+                    //Fixed : allow "" in empty quote enclosed
+                    if (chars[0] != '"' && customQuote == '\"') {
+                        curVal.append('"');
+                    }
+
+                    //double quotes in column will hit this!
+                    if (startCollectChar) {
+                        curVal.append('"');
+                    }
+
+                } else if (ch == separators) {
+
+                    result.add(curVal.toString());
+
+                    curVal = new StringBuffer();
+                    startCollectChar = false;
+
+                } else if (ch == '\r') {
+                    //ignore LF characters
+                    continue;
+                } else if (ch == '\n') {
+                    //the end, break!
+                    break;
+                } else {
+                    curVal.append(ch);
+                }
+            }
+
+        }
+
+        result.add(curVal.toString());
+
+        return result;
+    }
+
 
 }

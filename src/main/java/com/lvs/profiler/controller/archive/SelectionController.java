@@ -44,7 +44,7 @@ public class SelectionController {
      * @return result as list of paginated selectionObject
      */
     @GetMapping(value="selection/{user_id}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public Response findSelectionsByUser(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
+    public Response findSelectionsByUser(@PathVariable Long user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
 
         SearchResponse searchResponse = selectionService.findByUserAmenity(user_id, top);
 

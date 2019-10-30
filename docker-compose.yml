@@ -41,24 +41,6 @@ services:
     healthcheck:
       test: exit 0
 
-  ksql:
-    image: "confluentinc/cp-ksql-server:5.2.2"
-    restart: always
-    networks:
-      - profiler-tier
-    ports:
-      - "8088:8088"
-    environment:
-      - KSQL_BOOTSTRAP_SERVERS=kafka:9092
-      - KSQL_LISTENERS=http://0.0.0.0:8088/
-    # Connect the KSQL CLI to the server.
-    # docker run -it --net profiler_profiler-tier confluentinc/cp-ksql-cli http://ksql:8088
-    depends_on:
-      kafka:
-        condition: service_healthy
-    healthcheck:
-      test: exit 0
-
   kafdrop:
     image: "obsidiandynamics/kafdrop:3.13.0"
     restart: always
@@ -105,10 +87,6 @@ services:
       - "8999:8999"
     environment:
       - KAFKA_SERVER=kafka
-      #       - KSQL_REST_API_ENDPOINT_KSQL=http://ksql:8088/ksql
-      #       - KSQL_REST_API_ENDPOINT_QUERY=http://ksql:8088/query
-      #       - KSQL_REST_API_ENDPOINT_INFO=http://ksql:8088/info
-      #       - KSQL_REST_API_ENDPOINT_STATUS=http://ksql:8088/status
       - ELASTICSEARCH_HOST=elasticsearch
       - SPRING_DATA_ELASTICSEARCH_CLUSTER-NODES=elasticsearch:9300
     volumes:

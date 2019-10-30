@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface SelectionService {
 
-    SearchResponse findByUserAmenity(int uId, int topCount);
+    SearchResponse findByUserAmenity(Long uId, int topCount);
 
     Page<Selection> findAllSelection(Pageable pageRequest);
 

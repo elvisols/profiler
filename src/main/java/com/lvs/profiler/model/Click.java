@@ -22,11 +22,11 @@ public class Click {
 
     @NotNull(message = "user id cannot be null")
     @NotBlank(message = "user id cannot be empty")
-    private int userId;
+    private Long userId;
 
     @NotNull(message = "hotel id cannot be null")
     @NotBlank(message = "hotel id cannot be empty")
-    private int hotelId;
+    private Long hotelId;
 
     @NotNull(message = "hotel region cannot be null")
     @NotBlank(message = "hotel region cannot be empty")
@@ -34,6 +34,6 @@ public class Click {
 
     @NotNull(message = "timestamp cannot be null")
     @NotBlank(message = "timestamp cannot be empty")
-    private int timestamp;
+    private Integer timestamp;
 
 }

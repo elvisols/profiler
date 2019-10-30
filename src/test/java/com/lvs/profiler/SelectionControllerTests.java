@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -69,7 +70,7 @@ public class SelectionControllerTests {
         SearchResponseSections searchResponseSections = new SearchResponseSections( null, null, null, false, null, null, 5 );
         SearchResponse searchResponse = new SearchResponse(searchResponseSections, null, 1, 1, 0, 2, new ShardSearchFailure[] {}, null );
 
-        when(selectionService.findByUserAmenity(anyInt(), anyInt())).thenReturn(searchResponse);
+        when(selectionService.findByUserAmenity(anyLong(), anyInt())).thenReturn(searchResponse);
         when(response.fetch(searchResponse)).thenReturn(res);
 
         this.mockMvc.perform(get("/archive/selection/{user_id}", 12).param("top", "2"))

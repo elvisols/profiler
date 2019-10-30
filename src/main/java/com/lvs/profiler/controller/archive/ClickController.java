@@ -53,7 +53,7 @@ public class ClickController {
      * @return result as list of paginated clickObject
      */
     @GetMapping(value="click/{user_id}/hotel", produces= MediaType.APPLICATION_JSON_VALUE)
-    public Response findByUserHotel(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
+    public Response findByUserHotel(@PathVariable Long user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
 
         SearchResponse searchResponse = clickService.findByUserHotel(user_id, top);
 
@@ -70,7 +70,7 @@ public class ClickController {
      * @return result as list of paginated clickObject
      */
     @GetMapping(value="click/{user_id}/hotel-region", produces= MediaType.APPLICATION_JSON_VALUE)
-    public Response findByUserHotelRegion(@PathVariable int user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
+    public Response findByUserHotelRegion(@PathVariable Long user_id, @RequestParam(value = "top", defaultValue="5") int top) throws JsonProcessingException {
 
         SearchResponse searchResponse = clickService.findByUserHotelRegion(user_id, top);
 

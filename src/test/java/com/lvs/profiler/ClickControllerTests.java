@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -74,7 +75,7 @@ public class ClickControllerTests {
         SearchResponseSections searchResponseSections = new SearchResponseSections( null, null, null, false, null, null, 5 );
         SearchResponse searchResponse = new SearchResponse(searchResponseSections, null, 1, 1, 0, 2, new ShardSearchFailure[] {}, null );
 
-        when(clickService.findByUserHotel(anyInt(), anyInt())).thenReturn(searchResponse);
+        when(clickService.findByUserHotel(anyLong(), anyInt())).thenReturn(searchResponse);
         when(response.fetch(searchResponse)).thenReturn(res);
 
         this.mockMvc.perform(get("/archive/click/{user_id}/hotel", 9).param("top", "2"))
@@ -112,7 +113,7 @@ public class ClickControllerTests {
         SearchResponseSections searchResponseSections = new SearchResponseSections( null, null, null, false, null, null, 5 );
         SearchResponse searchResponse = new SearchResponse(searchResponseSections, null, 1, 1, 0, 2, new ShardSearchFailure[] {}, null );
 
-        when(clickService.findByUserHotelRegion(anyInt(), anyInt())).thenReturn(searchResponse);
+        when(clickService.findByUserHotelRegion(anyLong(), anyInt())).thenReturn(searchResponse);
         when(response.fetch(searchResponse)).thenReturn(res);
 
         this.mockMvc.perform(get("/archive/click/{user_id}/hotel-region", 23).param("top", "2"))

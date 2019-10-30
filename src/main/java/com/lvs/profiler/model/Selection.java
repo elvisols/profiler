@@ -23,14 +23,14 @@ public class Selection {
 
     @NotNull(message = "user id cannot be null")
     @NotBlank(message = "user id cannot be empty")
-    private int userId;
+    private Long userId;
 
     @NotNull(message = "amenity id cannot be null")
     @NotBlank(message = "amenity id cannot be empty")
-    private int amenityId;
+    private Long amenityId;
 
     @NotNull(message = "timestamp cannot be null")
     @NotBlank(message = "timestamp cannot be empty")
-    private int timestamp;
+    private Integer timestamp;
 
 }
