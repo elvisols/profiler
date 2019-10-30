@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <camel.latest.version>3.0.0-M4</camel.latest.version>
-        <camel.version>2.22.0</camel.version>
+        <camel.version>2.24.2</camel.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <asciidoctor-plugin.version>1.5.6</asciidoctor-plugin.version>
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
