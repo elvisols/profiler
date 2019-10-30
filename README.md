@@ -12,11 +12,11 @@ In order to have a scalable and highly available system, I have utilized the fol
 - Docker: For containerization.
 
 ##### Application Requirements:
-- Internet Connection
 - Java 8
 - Maven 3+
 - Docker p
 - Docker Compose `docker-compose`
+- Internet Connection
 
 ##### Application Run:
 Step One:
@@ -51,13 +51,23 @@ Files will be automatically deleted once processing is complete.
 
 
 ### Assumptions
+> Ports available
+- 2181
+- 9092
+- 9000
+- 9200
+- 9300
+- 5601
+- 8999
+
+> Caller Test
 - Caller has access to the user's unique id.
-- docker-compose is installed
-- you have internet access.
+
 
 ### Reference Documentation
-For further reference, how the webservice is consumed please visit the documentation page
+For further reference, how the webservice is consumed please visit the documentation home page
 
 * [Official User Profiler documentation](./target/guides/index.html)
+* [Question - Answers](./Answers.txt)
 
 ###   Regards!

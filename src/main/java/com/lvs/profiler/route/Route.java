@@ -53,7 +53,8 @@ public class Route extends RouteBuilder {
 
                 List<String> line = parseLine(body);
 
-                Selection selection = new Selection(); // Use FlyWeight design pattern here to get related object
+                // TODO: Use FlyWeight design pattern here to get related selection objects
+                Selection selection = new Selection();
 
                 selection.setTimestamp(Integer.valueOf(line.get(0)));
                 selection.setUserId(Long.valueOf(line.get(1)));
@@ -69,7 +70,8 @@ public class Route extends RouteBuilder {
 
                 List<String> line = parseLine(body);
 
-                Click click = new Click(); // Use FlyWeight design pattern here to get related object
+                // TODO: Use FlyWeight design pattern here to get related Click objects
+                Click click = new Click();
 
                 click.setTimestamp(Integer.valueOf(line.get(0)));
                 click.setUserId(Long.valueOf(line.get(1)));
@@ -182,7 +184,6 @@ public class Route extends RouteBuilder {
 
         List<String> result = new ArrayList<>();
 
-        //if empty, return!
         if (cvsLine == null && cvsLine.isEmpty()) {
             return result;
         }
